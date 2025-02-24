@@ -697,6 +697,25 @@
     };
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
+    let lastScrollY = window.scrollY;
+    const header = document.querySelector('header');
+  
+    // Ensure header is visible on page load.
+    header.style.transform = 'translateY(0)';
+    header.style.opacity = '1';
+  
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > lastScrollY) {
+        // Scrolling down: hide header.
+        header.style.transform = 'translateY(-100%)';
+        header.style.opacity = '0';
+      } else {
+        // Scrolling up: show header.
+        header.style.transform = 'translateY(0)';
+        header.style.opacity = '1';
+      }
+      lastScrollY = window.scrollY;
+    })
   </script>
 </body>
 </html>
